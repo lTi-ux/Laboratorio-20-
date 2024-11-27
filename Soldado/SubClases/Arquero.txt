@@ -1,5 +1,4 @@
-//KENNEDY CHIRINOS ROJAS
-//LABORATORIO 20
+
 class Arquero extends Soldado {
     private int flechas;
 

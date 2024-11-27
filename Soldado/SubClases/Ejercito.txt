@@ -1,5 +1,4 @@
-//KENNEDY CHIRINOS ROJAS
-//LABORATORIO 20
+
 import java.util.*;
 
 class Ejercito {

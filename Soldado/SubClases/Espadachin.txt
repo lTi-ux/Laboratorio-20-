@@ -1,6 +1,4 @@
 
-//KENNEDY CHIRINOS ROJAS
-//LABORATORIO 20
 class Espadachin extends Soldado {
     private int longitudEspada;
 
