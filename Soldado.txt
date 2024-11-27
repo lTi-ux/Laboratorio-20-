@@ -1,0 +1,19 @@
+public abstract class Soldado {
+    protected String nombre;
+    protected int puntosDeVida;
+    protected int fila;
+    protected int columna;
+
+    public Soldado(String nombre, int puntosDeVida, int fila, int columna) {
+        this.nombre = nombre;
+        this.puntosDeVida = puntosDeVida;
+        this.fila = fila;
+        this.columna = columna;
+    }
+
+    public abstract void atacar(Soldado enemigo);
+
+    public boolean estaVivo() {
+        return puntosDeVida > 0;
+    }
+}
