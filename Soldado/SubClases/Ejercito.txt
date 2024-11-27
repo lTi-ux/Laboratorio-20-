@@ -1,0 +1,95 @@
+//KENNEDY CHIRINOS ROJAS
+//LABORATORIO 20
+import java.util.*;
+
+class Ejercito {
+    private String reino;
+    private List<Soldado> soldados;
+
+    public Ejercito(String reino) {
+        this.reino = reino;
+        this.soldados = new ArrayList<>();
+    }
+
+    public void crearEjercito() {
+        Random rand = new Random();
+        String[] tipos = {"Espadachin", "Arquero", "Caballero", "Lancero"};
+        
+        int numeroSoldados = rand.nextInt(10) + 1;
+        
+        for (int i = 0; i < numeroSoldados; i++) {
+            String tipo = tipos[rand.nextInt(tipos.length)];
+            String nombre = tipo + rand.nextInt(10) + "X" + (i + 1);
+            int vida;
+            int fila = rand.nextInt(Mapa.TAMANO_MAPA);
+            int columna = rand.nextInt(Mapa.TAMANO_MAPA);
+
+            if (tipo.equals("Espadachin")) {
+                vida = rand.nextInt(2) + 3;
+                int longitudEspada = rand.nextInt(5) + 1;
+                soldados.add(new Espadachin(nombre, vida, fila, columna, longitudEspada));
+            } else if (tipo.equals("Arquero")) {
+                vida = rand.nextInt(3) + 1;
+                int flechas = rand.nextInt(10) + 5;
+                soldados.add(new Arquero(nombre, vida, fila, columna, flechas));
+            } else if (tipo.equals("Caballero")) {
+                vida = rand.nextInt(3) + 3;
+                boolean montando = rand.nextBoolean();
+                String arma = montando ? "lanza" : "espada";
+                soldados.add(new Caballero(nombre, vida, fila, columna, montando, arma));
+            } else if (tipo.equals("Lancero")) {
+                vida = rand.nextInt(2) + 1;
+                int longitudLanza = rand.nextInt(5) + 1;
+                soldados.add(new Lancero(nombre, vida, fila, columna, longitudLanza));
+            }
+        }
+    }
+
+    public List<Soldado> getSoldados() {
+        return soldados;
+    }
+
+    public String getReino() {
+        return reino;
+    }
+
+    public int obtenerVidaTotal() {
+        int vidaTotal = 0;
+        for (Soldado soldado : soldados) {
+            vidaTotal += soldado.getNivelVida();
+        }
+        return vidaTotal;
+    }
+
+    public double obtenerPromedioVida() {
+        int sumaVida = 0;
+        for (Soldado soldado : soldados) {
+            sumaVida += soldado.getNivelVida();
+        }
+        return (double) sumaVida / soldados.size();
+    }
+
+    public Soldado obtenerSoldadoMayorVida() {
+        Soldado mayorVida = soldados.get(0);
+        for (Soldado soldado : soldados) {
+            if (soldado.getNivelVida() > mayorVida.getNivelVida()) {
+                mayorVida = soldado;
+            }
+        }
+        return mayorVida;
+    }
+
+    public List<Soldado> obtenerRankingSoldados() {
+        List<Soldado> ranking = new ArrayList<>(soldados);
+        for (int i = 0; i < ranking.size() - 1; i++) {
+            for (int j = i + 1; j < ranking.size(); j++) {
+                if (ranking.get(i).getNivelVida() < ranking.get(j).getNivelVida()) {
+                    Soldado temp = ranking.get(i);
+                    ranking.set(i, ranking.get(j));
+                    ranking.set(j, temp);
+                }
+            }
+        }
+        return ranking;
+    }
+}
