@@ -1,0 +1,90 @@
+//KENNEDY CHIRINOS ROJAS
+//LABORATORIO 20
+import java.util.*;
+
+public class SimulacionBatalla {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Crear dos ejércitos
+        Ejercito ejercito1 = new Ejercito("Reino 1");
+        Ejercito ejercito2 = new Ejercito("Reino 2");
+
+        // Crear soldados aleatorios para los dos ejércitos
+        ejercito1.crearEjercito();
+        ejercito2.crearEjercito();
+
+       
+        Mapa mapa = new Mapa();
+        mapa.posicionarEjercitos(ejercito1, ejercito2);
+
+        // Mostrar el mapa
+        mapa.mostrarMapa();
+
+        System.out.println("===========================================");
+        // Mostrar todos los soldados de ambos ejércitos
+        System.out.println("Soldados del " + ejercito1.getReino() + ":");
+        for (Soldado soldado : ejercito1.getSoldados()) {
+            System.out.println(soldado);
+        }
+
+        System.out.println("===========================================");
+        
+        System.out.println("Soldados del " + ejercito2.getReino() + ":");
+        for (Soldado soldado : ejercito2.getSoldados()) {
+            System.out.println(soldado);
+        }
+
+        System.out.println("===========================================");
+
+        // Mostrar soldado con mayor nivel de vida de cada ejército
+        System.out.println("Soldado con mayor nivel de vida del " + ejercito1.getReino() + ":\n" + ejercito1.obtenerSoldadoMayorVida());
+        System.out.println("........................................");
+        System.out.println("Soldado con mayor nivel de vida del " + ejercito2.getReino() + ":\n" + ejercito2.obtenerSoldadoMayorVida());
+
+        System.out.println("===========================================");
+
+        // Mostrar promedio de puntos de vida de cada ejército
+        System.out.println("Promedio de puntos de vida del " + ejercito1.getReino() + ": \n" + ejercito1.obtenerPromedioVida());
+        System.out.println("........................................");
+        System.out.println("Promedio de puntos de vida del " + ejercito2.getReino() + ": \n" + ejercito2.obtenerPromedioVida());
+
+        System.out.println("===========================================");
+
+        // Mostrar ranking de poder de cada ejército
+        System.out.println("Ranking de poder del " + ejercito1.getReino() + ":");
+        for (Soldado soldado : ejercito1.obtenerRankingSoldados()) {
+            System.out.println(soldado);
+        }
+
+        System.out.println("........................................");
+
+        System.out.println("Ranking de poder del " + ejercito2.getReino() + ":");
+        for (Soldado soldado : ejercito2.obtenerRankingSoldados()) {
+            System.out.println(soldado);
+        }
+
+        System.out.println("===========================================");
+
+        // Determinar el ejército ganador basado en la vida total
+        int vidaTotalEjercito1 = ejercito1.obtenerVidaTotal();
+        System.out.println("........................................");
+        int vidaTotalEjercito2 = ejercito2.obtenerVidaTotal();
+        
+        System.out.println("===========================================");
+
+        System.out.println("Vida total del " + ejercito1.getReino() + ": " + vidaTotalEjercito1);
+        System.out.println("Vida total del " + ejercito2.getReino() + ": " + vidaTotalEjercito2);
+
+        if (vidaTotalEjercito1 > vidaTotalEjercito2) {
+            System.out.println("¡El " + ejercito1.getReino() + " gana la batalla!");
+        } else if (vidaTotalEjercito2 > vidaTotalEjercito1) {
+            System.out.println("¡El " + ejercito2.getReino() + " gana la batalla!");
+        } else {
+            System.out.println("¡Es un empate!");
+        }
+
+        scanner.close();
+    }
+}
